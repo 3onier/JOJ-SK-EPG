@@ -41,3 +41,13 @@ class Schedule:
         if sort:
             self._sort()
         return self
+
+    def generate_end_time(self):
+        """
+        Generates the end time for each media by looking at the next value
+        The Parser from the Website does not provide end time data, thus we must evaluate them by ourselves
+
+        :return:
+        """
+        pass
+

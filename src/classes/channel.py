@@ -3,6 +3,8 @@ from classes.media import Media
 
 class Channel:
 
+    channel_name: str = ""
+    live_url: str = ""
     media: Media = []
 
     def __init__(self, channel_name: str, live_url: str):

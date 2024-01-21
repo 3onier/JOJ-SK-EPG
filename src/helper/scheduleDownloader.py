@@ -77,3 +77,17 @@ def download_schedule_for_n_day(channel: Channel, n: int):
         day = int(date.day)
         schedule.merge(download_schedule_by_day(channel, year, month, day))
     return schedule
+
+
+def download_schedules_for_n_days(channels: list[Channel], n: int):
+    """
+    Crawl the schedules for multiple channels and return as list of schedules
+    :param channels:
+    :param n:
+    :return:
+    """
+    schedules:list[Schedule] = []
+    for channel in channels:
+        s = download_schedule_for_n_day(channel, n)
+        schedules.append(s)
+    return schedules
