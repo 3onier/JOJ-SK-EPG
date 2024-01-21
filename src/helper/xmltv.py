@@ -21,6 +21,7 @@ class Xmltv:
         out ='<?xml version="1.0" encoding="UTF-8"?>\n<!DOCTYPE tv SYSTEM "xmltv.dtd">\n'
         soup = BeautifulSoup()
         tv_tag = soup.new_tag("tv")
+        tv_tag['generator-info-name'] = "3onier-JOJ-SK-EPG"
         tv_tag.append(self.channel_tags)
         tv_tag.append(self.program_tags)
         soup.append(tv_tag)
@@ -47,9 +48,10 @@ class Xmltv:
 
     def _create_program_tag(self, channel: Channel, media: Media):
         soup = BeautifulSoup()
-        tag = soup.new_tag("program", attrs={
+        tag = soup.new_tag("programme", attrs={
             'channel': channel.channel_name,
-            'start': media.get_start_time_str()
+            'start': media.get_start_time_str(),
+            'end': media.get_end_time_str()
         })
         title_tag = soup.new_tag("title")
         title_tag.append(soup.new_string(media.title))
@@ -66,7 +68,6 @@ class Xmltv:
 
     def generate(self):
         self._create_programs_tags()
-        self._create_channel_tags()
         self._create_channel_tags()
 
     def saveXMLTV(self, filename: str):

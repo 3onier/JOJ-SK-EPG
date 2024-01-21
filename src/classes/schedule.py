@@ -49,5 +49,8 @@ class Schedule:
 
         :return:
         """
-        pass
-
+        new_media: list[Media] = []
+        for m1, m2 in zip(self.media[0:-1], self.media[1:]):
+            m1.end_time = m2.start_time
+            new_media.append(m1)
+        self.media = new_media

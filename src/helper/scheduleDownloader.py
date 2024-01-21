@@ -76,6 +76,7 @@ def download_schedule_for_n_day(channel: Channel, n: int):
         month = int(date.month)
         day = int(date.day)
         schedule.merge(download_schedule_by_day(channel, year, month, day))
+    schedule.generate_end_time()
     return schedule
 
 
