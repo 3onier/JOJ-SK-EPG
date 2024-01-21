@@ -57,6 +57,11 @@ class Xmltv:
             'lang': 'sk'
         })
         title_tag.append(soup.new_string(media.title))
+
+        thumbnail_tag = soup.new_tag("icon", attrs={
+            'src': media.thumbnail_url
+        })
+
         tag.append(title_tag)
         self.program_tags.append(tag)
 
