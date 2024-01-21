@@ -21,12 +21,12 @@ class Schedule:
             out += '\n'
         return out
 
-    def _sort(self): # TODO sort by datetime
+    def _sort(self):
         """
         Sort the Media in the schedule by datetime
         :return:
         """
-        pass
+        self.media.sort(key=lambda x: x.start_time)
 
     def merge(self, schedule: Self, sort=False) -> Self:
         """
@@ -49,6 +49,7 @@ class Schedule:
 
         :return:
         """
+        self._sort()
         new_media: list[Media] = []
         for m1, m2 in zip(self.media[0:-1], self.media[1:]):
             m1.end_time = m2.start_time
