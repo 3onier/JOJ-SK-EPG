@@ -63,6 +63,7 @@ class Xmltv:
         })
 
         tag.append(title_tag)
+        tag.append(thumbnail_tag)
         self.program_tags.append(tag)
 
     def _create_program_tags(self, schedule: Schedule):
@@ -74,6 +75,8 @@ class Xmltv:
             self._create_program_tags(schedule)
 
     def generate(self):
+        self.program_tags.clear()
+        self.channel_tags.clear()
         self._create_programs_tags()
         self._create_channel_tags()
 

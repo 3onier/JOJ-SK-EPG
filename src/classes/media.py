@@ -8,10 +8,11 @@ class Media:
     start_time: datetime = None
     end_time: datetime
 
-    def __init__(self, title: str, time_start: datetime, thumbnail_url: str = ""):
+    def __init__(self, title: str, time_start: datetime, thumbnail_url: str = "", end_time: datetime = None):
         self.title = title
         self.start_time = time_start
         self.thumbnail_url = thumbnail_url
+        self.end_time = end_time
 
     def get_start_time_str(self) -> str:
         return self.start_time.strftime("%Y%m%d%H%M%S %z")

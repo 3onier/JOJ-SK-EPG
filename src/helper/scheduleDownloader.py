@@ -42,14 +42,15 @@ def download_schedule_by_day(channel: Channel, year: int, month: int, day: int) 
     media = []
     for e_program in e_programs:
         # parse time
-        time_string = e_program.select("div.e-bar")[0]['data-playtime'].split(" ")[0]
-        start_time = datetime.strptime(time_string, "%Y-%m-%dT%H:%M:%S%z")  # %d/%m/%y %H:%M:%S.%f
+        start_time_string, end_time_string = e_program.select("div.e-bar")[0]['data-playtime'].split(" ")
+        start_time = datetime.strptime(start_time_string, "%Y-%m-%dT%H:%M:%S%z")  # %d/%m/%y %H:%M:%S.%f
+        end_time = datetime.strptime(end_time_string, "%Y-%m-%dT%H:%M:%S%z")
 
         # parse title and thumbnail
         thumbnail_url = e_program['data-image']
         title = e_program.select("span.title")[0].getText(strip=True)
 
-        media.append(Media(title, start_time, thumbnail_url))
+        media.append(Media(title, start_time, thumbnail_url, end_time))
 
     schedule = Schedule(channel)
     schedule.media = media
@@ -76,7 +77,6 @@ def download_schedule_for_n_day(channel: Channel, n: int):
         month = int(date.month)
         day = int(date.day)
         schedule.merge(download_schedule_by_day(channel, year, month, day))
-    schedule.generate_end_time()
     return schedule
 
 
