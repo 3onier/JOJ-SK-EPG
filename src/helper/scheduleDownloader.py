@@ -70,8 +70,8 @@ def download_schedule_for_n_day(channel: Channel, n: int):
     schedule = Schedule(channel)
     # the site has some weird behavior of having the date break at around 5pm, this can be ignored when crawling one day
     # in the past
-    today = datetime.now() - timedelta(days=1)
-    for i in range(n):
+    today = datetime.now()
+    for i in range(-1, n):
         date = today + timedelta(days=1 * i)
         year = int(date.year)
         month = int(date.month)

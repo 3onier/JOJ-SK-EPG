@@ -6,9 +6,10 @@ from classes.channel import Channel
 
 class Schedule:
     channel: Channel
-    media: list[Media] = []
+    media: list[Media]
     def __init__(self, channel: Channel):
         self.channel = channel
+        self.media = []
 
     def getScheduleAsText(self):
         """
