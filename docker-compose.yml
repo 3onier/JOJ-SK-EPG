@@ -1,0 +1,6 @@
+version: '3'
+services:
+    joj-crawler:
+        image: 3onier/joj_crawler
+        volumes:
+            - ./out:/out

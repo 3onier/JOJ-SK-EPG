@@ -6,6 +6,10 @@ This projects provides and automated service to craw the EPG-Data from the Chann
 - The File has been only tested on Jellyfin
 
 ## Usage
+### Requirements
+
+- beautifulsoup4 >= 4.12.3
+- requests >= 2.31.0
 
 ### Local
 ```
