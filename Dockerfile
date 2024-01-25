@@ -14,7 +14,7 @@ ADD src .
 # create cronjob
 RUN apt-get update && apt-get -y install cron
 WORKDIR  /etc/cron.d
-RUN crontab -l | { cat; echo "* * * * * /usr/local/bin/python3 /app/main.py -n 5 /out/epg.xmltv; } | crontab -
+RUN crontab -l | { cat; echo "0 13 * * * /usr/local/bin/python3 /app/main.py -n 5 /out/epg.xmltv; } | crontab -
 
 # create an output
 RUN mkdir /out
